@@ -1,0 +1,12 @@
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\bin\Debug\net8.0\LibraryManagement.Application.deps.json
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\bin\Debug\net8.0\LibraryManagement.Application.dll
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\bin\Debug\net8.0\LibraryManagement.Application.pdb
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.AssemblyInfoInputs.cache
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.AssemblyInfo.cs
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.csproj.CoreCompileInputs.cache
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.sourcelink.json
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.dll
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\refint\LibraryManagement.Application.dll
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\LibraryManagement.Application.pdb
+C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Application\obj\Debug\net8.0\ref\LibraryManagement.Application.dll

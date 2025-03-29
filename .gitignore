@@ -361,3 +361,18 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vs/LibraryManagement/DesignTimeBuild/.dtbcache.v2
+/.vs/ProjectEvaluation/librarymanagement.metadata.v9.bin
+/.vs/ProjectEvaluation/librarymanagement.projects.v9.bin
+/.vs/ProjectEvaluation/librarymanagement.strings.v9.bin
+/LibraryManagement.Data/obj/Debug/net8.0/ref/LibraryManagement.Data.dll
+/LibraryManagement.Data/obj/Debug/net8.0/refint/LibraryManagement.Data.dll
+/LibraryManagement.Domain/bin/Debug/net8.0/LibraryManagement.Domain.dll
+/LibraryManagement.Domain/bin/Debug/net8.0/LibraryManagement.Domain.pdb
+/LibraryManagement.Domain/obj/Debug/net8.0/ref/LibraryManagement.Domain.dll
+/LibraryManagement.Domain/obj/Debug/net8.0/refint/LibraryManagement.Domain.dll
+/LibraryManagement.SqlServerDatabase/bin/Debug/LibraryManagement.SqlServerDatabase.dacpac
+/LibraryManagement.SqlServerDatabase/bin/Debug/LibraryManagement.SqlServerDatabase.dll
+/LibraryManagement.SqlServerDatabase/bin/Debug/LibraryManagement.SqlServerDatabase.pdb
+/LibraryManagement.SqlServerDatabase/LibraryManagement.SqlServerDatabase.dbmdl
+/LibraryManagement.SqlServerDatabase/LibraryManagement.SqlServerDatabase.jfm

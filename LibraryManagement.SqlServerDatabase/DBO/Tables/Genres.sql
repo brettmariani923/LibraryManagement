@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Genres]
+(
+    GenreID INT PRIMARY KEY IDENTITY(1,1),
+    Name VARCHAR(MAX) NOT NULL,
+);

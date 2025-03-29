@@ -4,19 +4,22 @@ VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LibraryManagement.SqlServerDatabase", "LibraryManagement.SqlServerDatabase\LibraryManagement.SqlServerDatabase.sqlproj", "{64825592-C04F-498A-B8C2-FC6BFB001320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Domain", "LibraryManagement.Domain\LibraryManagement.Domain.csproj", "{40B6532D-D257-465D-9C27-523B00143B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagement.Domain", "LibraryManagement.Domain\LibraryManagement.Domain.csproj", "{40B6532D-D257-465D-9C27-523B00143B7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Data", "LibraryManagement.Data\LibraryManagement.Data.csproj", "{EA6A3ADC-9927-43ED-8DE6-D66542AC2597}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagement.Data", "LibraryManagement.Data\LibraryManagement.Data.csproj", "{EA6A3ADC-9927-43ED-8DE6-D66542AC2597}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Application", "LibraryManagement.Application\LibraryManagement.Application.csproj", "{DD904FD8-9D71-4145-A55E-B9C791ADF9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagement.Application", "LibraryManagement.Application\LibraryManagement.Application.csproj", "{DD904FD8-9D71-4145-A55E-B9C791ADF9BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Api", "LibraryManagement.Api\LibraryManagement.Api.csproj", "{6E2DDB9F-450B-4E7E-BD47-C3F06FB0217E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{775A4C5F-FB7E-4616-8238-7575F6BFE9A8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagement.Data.Tests", "LibraryManagement.Data.Tests\LibraryManagement.Data.Tests.csproj", "{9C538DD2-509F-402F-B7C7-D444EA2A1FBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEE2080A-81CD-475E-B31D-B3C8ED18FDEB}"
 	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		README.md = README.md
+		Readme.md = Readme.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Api", "LibraryManagement.Api\LibraryManagement.Api.csproj", "{B6A88608-FFCC-4222-A455-F42DF4D58556}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,13 +45,20 @@ Global
 		{DD904FD8-9D71-4145-A55E-B9C791ADF9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD904FD8-9D71-4145-A55E-B9C791ADF9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD904FD8-9D71-4145-A55E-B9C791ADF9BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E2DDB9F-450B-4E7E-BD47-C3F06FB0217E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E2DDB9F-450B-4E7E-BD47-C3F06FB0217E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E2DDB9F-450B-4E7E-BD47-C3F06FB0217E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E2DDB9F-450B-4E7E-BD47-C3F06FB0217E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C538DD2-509F-402F-B7C7-D444EA2A1FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C538DD2-509F-402F-B7C7-D444EA2A1FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C538DD2-509F-402F-B7C7-D444EA2A1FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C538DD2-509F-402F-B7C7-D444EA2A1FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A88608-FFCC-4222-A455-F42DF4D58556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A88608-FFCC-4222-A455-F42DF4D58556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A88608-FFCC-4222-A455-F42DF4D58556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A88608-FFCC-4222-A455-F42DF4D58556}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9C538DD2-509F-402F-B7C7-D444EA2A1FBD} = {775A4C5F-FB7E-4616-8238-7575F6BFE9A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2B41909-4FB9-4FD3-8AED-70A0AB48F859}

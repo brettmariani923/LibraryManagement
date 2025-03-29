@@ -1,8 +1,0 @@
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.csproj.AssemblyReference.cache
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.AssemblyInfoInputs.cache
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.AssemblyInfo.cs
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.csproj.CoreCompileInputs.cache
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\brett\source\repos\LibraryManagement\LibraryManagement.Api\obj\Debug\net8.0\LibraryManagement.Api.sourcelink.json

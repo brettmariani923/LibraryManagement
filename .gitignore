@@ -376,3 +376,9 @@ FodyWeavers.xsd
 /LibraryManagement.SqlServerDatabase/bin/Debug/LibraryManagement.SqlServerDatabase.pdb
 /LibraryManagement.SqlServerDatabase/LibraryManagement.SqlServerDatabase.dbmdl
 /LibraryManagement.SqlServerDatabase/LibraryManagement.SqlServerDatabase.jfm
+/LibraryManagement.Application/bin/Debug/net8.0/LibraryManagement.Application.dll
+/LibraryManagement.Application/bin/Debug/net8.0/LibraryManagement.Application.pdb
+/LibraryManagement.Application/obj/Debug/net8.0/ref/LibraryManagement.Application.dll
+/LibraryManagement.Application/obj/Debug/net8.0/refint/LibraryManagement.Application.dll
+/.vs/LibraryManagement/v17/.suo
+/.vs/LibraryManagement/v17/DocumentLayout.json

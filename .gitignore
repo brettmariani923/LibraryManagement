@@ -382,3 +382,4 @@ FodyWeavers.xsd
 /LibraryManagement.Application/obj/Debug/net8.0/refint/LibraryManagement.Application.dll
 /.vs/LibraryManagement/v17/.suo
 /.vs/LibraryManagement/v17/DocumentLayout.json
+/LibraryManagement.Data.Tests/Helpers/Hidden.cs

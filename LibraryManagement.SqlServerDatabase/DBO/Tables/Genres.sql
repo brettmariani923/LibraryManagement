@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Genres]
 (
     GenreID INT CONSTRAINT PK_Genres PRIMARY KEY IDENTITY(1,1),
-    Name VARCHAR(MAX) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
 );

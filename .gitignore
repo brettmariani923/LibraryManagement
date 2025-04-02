@@ -35,6 +35,9 @@ bld/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+
+.vs*
+
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -383,3 +386,6 @@ FodyWeavers.xsd
 /.vs/LibraryManagement/v17/.suo
 /.vs/LibraryManagement/v17/DocumentLayout.json
 /LibraryManagement.Data.Tests/Helpers/Hidden.cs
+/.vs/LibraryManagement/v17/DocumentLayout.backup.json
+/.vs/LibraryManagement/CopilotIndices/17.13.441.19478/SemanticSymbols.db
+/.vs/LibraryManagement/CopilotIndices/17.13.441.19478/CodeChunks.db

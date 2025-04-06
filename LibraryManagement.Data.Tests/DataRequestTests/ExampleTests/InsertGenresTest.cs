@@ -14,7 +14,7 @@ using LibraryManagement.Domain.Constants;
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {
-    public class GenresTest : DataTest
+    public class InsertGenresTest : DataTest
     {
         [Fact]
         public async Task InsertGenre_GivenCorrect_ShouldInsert_Successfully()
@@ -25,46 +25,38 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres("Philosophy"));
         }
 
         [Fact]
         public async Task InsertGenre_Given_GenreName_AlreadyExists_ShouldReturn_NoRowsUpdated()
         {
             var genreName = "Fiction";
+
             await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
 
-            var rowsAffected = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
+            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertGenres(genreName)));
 
-            Assert.Equal(1, rowsAffected);
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(genreName));
         }
 
-        [Fact]
-        public async Task InsertGenre_Given_NameIsNull_ShouldThrow_SqlException()
+        [Theory]
+
+        [InlineData(null!)]
+        [InlineData("")]
+        [InlineData("  ")]
+        public async Task InsertGenre_Given_NameIsInvalid_ShouldThrow_SqlException(string invalidName)
         {
-            var request = new InsertGenres(null!);
+            var request = new InsertGenres(invalidName);
 
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(request));
-        }
 
-        [Fact]
-        public async Task InsertGenre_Given_NameIsEmpty_ShouldThrow_SqlException()
-        {
-            var request = new InsertGenres("");
-
-            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(request));
-        }
-
-        [Fact]
-        public async Task InsertGenre_Given_NameIsWhitespace_ShouldThrow_SqlException()
-        {
-            var request = new InsertGenres("   ");
-            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(request));
         }
 
         [Fact]
         public async Task InsertGenre_WithTooLongName_ShouldThrowSqlException()
         {
-            var longName = new string('A', 300);
+            var longName = new string('A', MaxLength.GenreName +1);
             var request = new InsertGenres(longName);
 
             await Assert.ThrowsAsync<SqlException>(() => _dataAccess.ExecuteAsync(request));
@@ -73,12 +65,16 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task InsertGenre_Given_NameWithSpecialCharacters_ShouldInsert_Successfully()
         {
-            var specialChar = "Science & Technology!";
+
+            var specialChar = "Science & Technology! ç ê ë è";
+
             var request = new InsertGenres(specialChar);
 
             var result = await _dataAccess.ExecuteAsync(request);
 
             Assert.True(result == 1);
+
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(specialChar));
         }
 
         [Fact]
@@ -91,6 +87,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var result = await _dataAccess.ExecuteAsync(request);
 
             Assert.True(result == 1);
+
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(maxLength));
         }
 
         [Fact]
@@ -103,6 +101,9 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(task1.Result == 1);
             Assert.True(task2.Result == 1);
+
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres("Action"));
+            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres("Drama"));
         }
 
     }

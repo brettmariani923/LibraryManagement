@@ -23,23 +23,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             // Here we are just asserting that the result is not null. Typically you would have more assertions, such as making sure your object has the expected values.
             Assert.NotNull(result);
         }
-
-
-
-
-
-
-
-
-
-
             // This class is just for an example, but ideally you would have multiple tests.
             // You want to always consider the different possibilities/outcomes for the method/class you're testing, and then
             // ensure that you have tests to cover for all scenarios. For example you might have one test to
             // assert you get the record when it exists, but you might have another test that you get null when no record exists.
         }
 }
-
 //make classes for each component of the DataRequest you want to test.
 //for example, if you have a DataRequest that fetches a record by id, you would have a class that tests that DataRequest.
 //if you have a DataRequest that inserts a record, you would have a class that tests that DataRequest.

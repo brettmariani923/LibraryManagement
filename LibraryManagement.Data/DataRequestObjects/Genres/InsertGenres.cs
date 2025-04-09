@@ -9,16 +9,16 @@ namespace LibraryManagement.Data.DataRequestObjects.Genres
 {
     public class InsertGenres : IDataExecute
     {
-        public string _Name { get; set; }
+        public string Name { get; set; }
 
         public InsertGenres(string name)
         {
-            _Name = name;
+            Name = name;
         }
 
         public object? GetParameters()
         {
-            return new { Name = _Name };
+            return new { Name = Name };
         }
 
         public string GetSql()

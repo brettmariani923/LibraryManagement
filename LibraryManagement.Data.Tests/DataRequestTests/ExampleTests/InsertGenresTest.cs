@@ -10,6 +10,7 @@ using LibraryManagement.Data.Abstraction;
 using Microsoft.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
 using LibraryManagement.Domain.Constants;
+using Azure.Core;
 
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
@@ -25,11 +26,13 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres("Philosophy"));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(request.Name));
+
+            await Task.WhenAll(deleteTask1);
         }
 
         [Fact]
-        public async Task InsertGenre_Given_GenreName_AlreadyExists_ShouldReturn_NoRowsUpdated()
+        public async Task InsertGenre_Given_GenreName_AlreadyExists_ShouldThrow_SqlException()
         {
             var genreName = "Fiction";
 
@@ -38,6 +41,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertGenres(genreName)));
 
             var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(genreName));
+
+            await Task.WhenAll(deleteTask1);
         }
 
         [Theory]
@@ -50,7 +55,6 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var request = new InsertGenres(invalidName);
 
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(request));
-
         }
 
         [Fact]
@@ -65,7 +69,6 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task InsertGenre_Given_NameWithSpecialCharacters_ShouldInsert_Successfully()
         {
-
             var specialChar = "Science & Technology! ç ê ë è";
 
             var request = new InsertGenres(specialChar);
@@ -74,7 +77,9 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(specialChar));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(request.Name));
+
+            await Task.WhenAll(deleteTask1);
         }
 
         [Fact]
@@ -88,7 +93,9 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(maxLength));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(request.Name));
+
+            await Task.WhenAll(deleteTask1);
         }
 
         [Fact]
@@ -104,6 +111,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres("Action"));
             var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres("Drama"));
+
+            await Task.WhenAll(deleteTask1, deleteTask2);
         }
 
     }

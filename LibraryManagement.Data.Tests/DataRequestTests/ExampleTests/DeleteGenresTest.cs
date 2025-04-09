@@ -25,7 +25,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             var request2 = new DeleteGenres(genreName);
 
-            var philosophy = new GetGenreByName(genreName);
+            var philosophy = new Genre_DTO(1);
 
             var result = await _dataAccess.FetchAsync(philosophy);
 
@@ -46,8 +46,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             await Task.WhenAll(deleteTask1, deleteTask2);
 
-            var action = new GetGenreByName("Action");
-            var drama = new GetGenreByName("Drama");
+            var action = new Genre_DTO(1);
+            var drama = new Genre_DTO(2);
 
             var result1 = await _dataAccess.FetchAsync(action);
             var result2 = await _dataAccess.FetchAsync(drama);

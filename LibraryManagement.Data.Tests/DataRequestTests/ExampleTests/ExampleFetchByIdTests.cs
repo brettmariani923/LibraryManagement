@@ -29,7 +29,3 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             // assert you get the record when it exists, but you might have another test that you get null when no record exists.
         }
 }
-//make classes for each component of the DataRequest you want to test.
-//for example, if you have a DataRequest that fetches a record by id, you would have a class that tests that DataRequest.
-//if you have a DataRequest that inserts a record, you would have a class that tests that DataRequest.
-//etc.

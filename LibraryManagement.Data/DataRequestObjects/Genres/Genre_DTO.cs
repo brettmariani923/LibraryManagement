@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Data.DataRequestObjects.Genres
 {
-    public class DeleteGenres : IDataExecute
+    public class Genre_DTO : IDataFetch<Genre_DTO>
     {
-        public string DeleteName { get; set; }
+        public int GenreID { get; set; }
 
-        public DeleteGenres(string name)
+        public Genre_DTO(int genreId)
         {
-            DeleteName = name;
+            GenreID = genreId;
         }
 
-        public object? GetParameters()
+        public object GetParameters()
         {
-            return new { Name = DeleteName };
+            return new { GenreID = GenreID };
         }
 
         public string GetSql()
         {
-            return "DELETE FROM Genres WHERE Name = @Name;";
+            return "SELECT GenreID, Name FROM Genres WHERE GenreID = @GenreID";
         }
-   
+
     }
 }

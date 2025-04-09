@@ -22,7 +22,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var insertGenres = new InsertGenres("History");
             var insertedId = await _dataAccess.ExecuteAsync(insertGenres);
 
-            var request = new Genre_DTO(insertedId, "History");
+            var request = new Genre_DTO(1, "History");
             var result = await _dataAccess.FetchAsync(request);
 
             Assert.NotNull(result);

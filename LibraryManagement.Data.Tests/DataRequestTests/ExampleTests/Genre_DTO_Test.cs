@@ -20,14 +20,16 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         public async Task Genre_DTO_Given_ValidGenreId_ShouldReturn_ExistingRecord()
         {
             var insertGenres = new InsertGenres("History");
-            var insertedId = await _dataAccess.ExecuteAsync(insertGenres);
+            var insert = await _dataAccess.ExecuteAsync(insertGenres);
 
             var request = new Genre_DTO(1, "History");
             var result = await _dataAccess.FetchAsync(request);
 
             Assert.NotNull(result);
-            Assert.Equal(insertedId, result.GenreID);
+            Assert.Equal(1, result.GenreID);
             Assert.Equal("History", result.Name);
+
+            await _dataAccess.ExecuteAsync(new DeleteGenres(2));
 
         }
     }

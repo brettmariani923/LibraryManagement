@@ -19,7 +19,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task DeleteGenre_GivenCorrect_ShouldDelete_Successfully()
         {
-            var genreName = "Philosophy";
+            var genreName = "Romance";
 
             var request = new InsertGenres(genreName);
 
@@ -37,7 +37,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         {
 
             var task1 = _dataAccess.ExecuteAsync(new InsertGenres("Action"));
-            var task2 = _dataAccess.ExecuteAsync(new InsertGenres("Drama"));
+            var task2 = _dataAccess.ExecuteAsync(new InsertGenres("Horror"));
 
             await Task.WhenAll(task1, task2);
 
@@ -47,7 +47,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             await Task.WhenAll(deleteTask1, deleteTask2);
 
             var action = new DataRequestObjects.Genres.Genre_DTO(1, "Action");
-            var drama = new DataRequestObjects.Genres.Genre_DTO(2, "Drama");
+            var drama = new DataRequestObjects.Genres.Genre_DTO(2, "Horror");
 
             var result1 = await _dataAccess.FetchAsync(action);
             var result2 = await _dataAccess.FetchAsync(drama);

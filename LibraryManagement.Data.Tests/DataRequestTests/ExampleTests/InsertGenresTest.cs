@@ -106,16 +106,13 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             await Task.WhenAll(insert1Task, insert2Task);
 
-            var genreID1 = insert1Task.Result;
-            var genreID2 = insert2Task.Result;
+            Assert.True(insert1Task.Result == 1);
+            Assert.True(insert2Task.Result == 1);
 
-            Assert.True(genreID1 > 0);
-            Assert.True(genreID2 > 0);
+            await _dataAccess.ExecuteAsync(new DeleteGenres(1));
+            await _dataAccess.ExecuteAsync(new DeleteGenres(2));
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
-            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres(2));
-
-            await Task.WhenAll(deleteTask1, deleteTask2);
+            
         }
 
     }

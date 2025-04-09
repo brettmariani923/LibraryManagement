@@ -10,15 +10,17 @@ namespace LibraryManagement.Data.DataRequestObjects.Genres
     public class Genre_DTO : IDataFetch<Genre_DTO>
     {
         public int GenreID { get; set; }
+        public string Name { get; set; }
 
-        public Genre_DTO(int genreId)
+        public Genre_DTO(int genreId, string name)
         {
             GenreID = genreId;
+            Name = name;
         }
 
         public object GetParameters()
         {
-            return new { GenreID = GenreID };
+            return new { GenreID };
         }
 
         public string GetSql()

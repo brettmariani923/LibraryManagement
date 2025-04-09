@@ -9,21 +9,21 @@ namespace LibraryManagement.Data.DataRequestObjects.Genres
 {
     public class DeleteGenres : IDataExecute
     {
-        public string DeleteName { get; set; }
+        public int DeleteID { get; set; }
 
-        public DeleteGenres(string name)
+        public DeleteGenres(int id)
         {
-            DeleteName = name;
+            DeleteID = id;
         }
 
         public object? GetParameters()
         {
-            return new { Name = DeleteName };
+            return new { GenreID = DeleteID };
         }
 
         public string GetSql()
         {
-            return "DELETE FROM Genres WHERE Name = @Name;";
+            return "DELETE FROM Genres WHERE GenreID = @GenreID;";
         }
    
     }

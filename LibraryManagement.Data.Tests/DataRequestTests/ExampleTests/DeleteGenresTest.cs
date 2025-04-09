@@ -23,9 +23,9 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             var request = new InsertGenres(genreName);
 
-            var request2 = new DeleteGenres(genreName);
+            var request2 = new DeleteGenres(1);
 
-            var philosophy = new Genre_DTO(1);
+            var philosophy = new DataRequestObjects.Genres.Genre_DTO(1, genreName);
 
             var result = await _dataAccess.FetchAsync(philosophy);
 
@@ -41,13 +41,13 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             await Task.WhenAll(task1, task2);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres("Action"));
-            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres("Drama"));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
+            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres(2));
 
             await Task.WhenAll(deleteTask1, deleteTask2);
 
-            var action = new Genre_DTO(1);
-            var drama = new Genre_DTO(2);
+            var action = new DataRequestObjects.Genres.Genre_DTO(1, "Action");
+            var drama = new DataRequestObjects.Genres.Genre_DTO(2, "Drama");
 
             var result1 = await _dataAccess.FetchAsync(action);
             var result2 = await _dataAccess.FetchAsync(drama);

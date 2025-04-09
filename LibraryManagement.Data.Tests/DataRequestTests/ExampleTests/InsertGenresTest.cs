@@ -26,7 +26,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(request.Name));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(result));
 
             await Task.WhenAll(deleteTask1);
         }
@@ -36,11 +36,11 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         {
             var genreName = "Fiction";
 
-            await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
+            var id = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
 
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertGenres(genreName)));
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(genreName));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(id));
 
             await Task.WhenAll(deleteTask1);
         }
@@ -77,7 +77,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(request.Name));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(result));
 
             await Task.WhenAll(deleteTask1);
         }
@@ -93,7 +93,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(request.Name));
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(result));
 
             await Task.WhenAll(deleteTask1);
         }
@@ -101,19 +101,22 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task InsertGenre_Given_ConcurrentInserts_ShouldInsert_Successfully()
         {
-            var task1 = _dataAccess.ExecuteAsync(new InsertGenres("Action"));
-            var task2 = _dataAccess.ExecuteAsync(new InsertGenres("Drama"));
+            var insert1Task = _dataAccess.ExecuteAsync(new InsertGenres("Action"));
+            var insert2Task = _dataAccess.ExecuteAsync(new InsertGenres("Drama"));
 
-            await Task.WhenAll(task1, task2);
+            await Task.WhenAll(insert1Task, insert2Task);
 
-            Assert.True(task1.Result == 1);
-            Assert.True(task2.Result == 1);
+            var genreID1 = insert1Task.Result;  
+            var genreID2 = insert2Task.Result;  
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres("Action"));
-            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres("Drama"));
+            Assert.True(genreID1 > 0);
+            Assert.True(genreID2 > 0);
+
+            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(genreID1));
+            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres(genreID2));
 
             await Task.WhenAll(deleteTask1, deleteTask2);
         }
-
     }
+    
 }

@@ -17,7 +17,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
     public class GetGenreByNameTest : DataTest
     {
         [Fact]
-        public async Task Genre_DTO_Given_ValidGenreId_ShouldReturn_ExistingRecord()
+        public async Task GetGenreByName_Given_ValidGenreName_ShouldReturn_ExistingRecord()
         {
             var insertGenres = new InsertGenres("History");
             var insert = await _dataAccess.ExecuteAsync(insertGenres);
@@ -30,6 +30,14 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             await _dataAccess.ExecuteAsync(new DeleteGenres(result.GenreID));
 
+        }
+
+        [Fact]
+        public async Task GetGenreByName_Given_InvalidName_ShouldReturn_Null()
+        {
+            var request = new GetGenreByName("NonExistentGenre");
+            var result = await _dataAccess.FetchAsync(request);
+            Assert.Null(result);
         }
     }
 }

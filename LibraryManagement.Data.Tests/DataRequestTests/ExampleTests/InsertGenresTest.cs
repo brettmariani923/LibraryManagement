@@ -47,15 +47,21 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         {
             var genreName = "Fiction";
 
-            var request = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
-
-            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertGenres(genreName)));
+            var request = new InsertGenres(genreName);
+            var result = await _dataAccess.ExecuteAsync(request);
+            Assert.Equal(1, result); 
 
             var getGenre = new GetGenreByName(genreName);
+            var genre = await _dataAccess.FetchAsync(getGenre);
+            Assert.NotNull(genre); 
 
-            await _dataAccess.ExecuteAsync(new DeleteGenres(getGenre.GenreID));
+            var request2 = new InsertGenres(genreName);
+            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(request2));
 
+            var deleteTask = new DeleteGenres(genre.GenreID);
+            await _dataAccess.ExecuteAsync(deleteTask);
         }
+
 
         [Theory]
 

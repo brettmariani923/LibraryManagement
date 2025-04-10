@@ -17,7 +17,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
     public class DeleteGenresTest : DataTest
     {
         [Fact]
-        public async Task DeleteGenre_GivenCorrect_ShouldDelete_Successfully()
+        public async Task DeleteGenre_GivenCorrectID_ShouldDelete_Successfully()
         {
             var genreName = "Romance";
 
@@ -39,6 +39,14 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             var checkDeleted = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
             Assert.Null(checkDeleted);
+        }
+
+        [Fact]
+        public async Task DeleteGenre_GivenIncorrectID_ShouldReturn_Zero()
+        {
+            var request = new DeleteGenres(99999);
+            var result = await _dataAccess.ExecuteAsync(request);
+            Assert.Equal(0, result);
         }
     }
 }

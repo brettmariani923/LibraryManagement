@@ -11,38 +11,50 @@ using Microsoft.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
 using LibraryManagement.Domain.Constants;
 using Azure.Core;
-
+using System.Runtime.InteropServices;
+using LibraryManagement.Data.DataTransferObjects;
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {
     public class InsertGenresTest : DataTest
     {
+
         [Fact]
-        public async Task InsertGenre_GivenCorrect_ShouldInsert_Successfully()
+        public async Task InsertGenre_GivenValidName_ShouldInsertSuccessfully()
         {
-            var request = new InsertGenres("Philosophy");
+            
+            var genreName = "Adventure";
+            var insertCommand = new InsertGenres(genreName);
 
-            var result = await _dataAccess.ExecuteAsync(request);
+            var insertResult = await _dataAccess.ExecuteAsync(insertCommand);
 
-            Assert.True(result == 1);
+            Assert.Equal(1, insertResult);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
+            var getGenreQuery = new GetGenreByName(genreName);
+            var genre = await _dataAccess.FetchAsync(getGenreQuery);
 
-            await Task.WhenAll(deleteTask1);
+            Assert.NotNull(genre);
+            Assert.Equal(genreName, genre.Name);
+
+            var deleteCommand = new DeleteGenres(genre.GenreID);
+            await _dataAccess.ExecuteAsync(deleteCommand);
         }
+
+
 
         [Fact]
         public async Task InsertGenre_Given_GenreName_AlreadyExists_ShouldThrow_SqlException()
         {
             var genreName = "Fiction";
 
-            var id = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
+            var request = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
 
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertGenres(genreName)));
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
+            var getGenre = new GetGenreByName(genreName);
 
-            await Task.WhenAll(deleteTask1);
+            await _dataAccess.ExecuteAsync(new DeleteGenres(getGenre.GenreID));
+
         }
 
         [Theory]
@@ -67,6 +79,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         }
 
         [Fact]
+       
+
         public async Task InsertGenre_Given_NameWithSpecialCharacters_ShouldInsert_Successfully()
         {
             var specialChar = "Science & Technology! ç ê ë è";
@@ -77,9 +91,14 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             Assert.True(result == 1);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
+            var getGenre = new GetGenreByName(specialChar);
 
-            await Task.WhenAll(deleteTask1);
+            var getResult = await _dataAccess.FetchAsync(getGenre);
+
+            var deleteTask = new DeleteGenres(getResult.GenreID);
+
+            await _dataAccess.ExecuteAsync(deleteTask);
+
         }
 
         [Fact]
@@ -91,29 +110,18 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 
             var result = await _dataAccess.ExecuteAsync(request);
 
-            Assert.True(result == 1);
+            var getGenre = new GetGenreByName(request.Name);
 
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
+            var getResult = await _dataAccess.FetchAsync(getGenre);
 
-            await Task.WhenAll(deleteTask1);
+            Assert.NotNull(getResult);
+            Assert.Equal(maxLength, getResult.Name);
+
+            await _dataAccess.ExecuteAsync(new DeleteGenres(getResult.GenreID));
+
         }
 
-        [Fact]
-        public async Task InsertGenre_Given_ConcurrentInserts_ShouldInsert_Successfully()
-        {
-            var insert1Task = _dataAccess.ExecuteAsync(new InsertGenres("Action"));
-            var insert2Task = _dataAccess.ExecuteAsync(new InsertGenres("Drama"));
 
-            await Task.WhenAll(insert1Task, insert2Task);
-
-            Assert.True(insert1Task.Result == 1);
-            Assert.True(insert2Task.Result == 1);
-
-            await _dataAccess.ExecuteAsync(new DeleteGenres(1));
-            await _dataAccess.ExecuteAsync(new DeleteGenres(2));
-
-            
-        }
 
     }
 

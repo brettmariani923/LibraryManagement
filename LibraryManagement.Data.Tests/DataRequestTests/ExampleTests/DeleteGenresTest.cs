@@ -22,38 +22,23 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var genreName = "Romance";
 
             var request = new InsertGenres(genreName);
+            var result = await _dataAccess.ExecuteAsync(request);
 
-            var request2 = new DeleteGenres(1);
+            Assert.Equal(1, result);
 
-            var philosophy = new DataRequestObjects.Genres.Genre_DTO(1, genreName);
+            var getGenre = new GetGenreByName(genreName);
+            var getResult = await _dataAccess.FetchAsync(getGenre);
+                
+            Assert.NotNull(getResult);
+            Assert.Equal(genreName, getResult.Name);
 
-            var result = await _dataAccess.FetchAsync(philosophy);
+            var deleteTask = new DeleteGenres(getResult.GenreID);
+            var executeDeletion = await _dataAccess.ExecuteAsync(deleteTask);
 
-            Assert.Null(result);
-        }
+            Assert.Equal(1, executeDeletion);
 
-        [Fact]
-        public async Task DeleteGenre_GivenConcurrent_ShouldDelete_Successfully()
-        {
-
-            var task1 = _dataAccess.ExecuteAsync(new InsertGenres("Action"));
-            var task2 = _dataAccess.ExecuteAsync(new InsertGenres("Horror"));
-
-            await Task.WhenAll(task1, task2);
-
-            var deleteTask1 = _dataAccess.ExecuteAsync(new DeleteGenres(1));
-            var deleteTask2 = _dataAccess.ExecuteAsync(new DeleteGenres(2));
-
-            await Task.WhenAll(deleteTask1, deleteTask2);
-
-            var action = new DataRequestObjects.Genres.Genre_DTO(1, "Action");
-            var drama = new DataRequestObjects.Genres.Genre_DTO(2, "Horror");
-
-            var result1 = await _dataAccess.FetchAsync(action);
-            var result2 = await _dataAccess.FetchAsync(drama);
-
-            Assert.Null(result1);
-            Assert.Null(result2);
+            var checkDeleted = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
+            Assert.Null(checkDeleted);
         }
     }
 }

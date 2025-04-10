@@ -14,7 +14,7 @@ using Azure.Core;
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {
-    public class Genre_DTO_Test : DataTest
+    public class GetGenreByNameTest : DataTest
     {
         [Fact]
         public async Task Genre_DTO_Given_ValidGenreId_ShouldReturn_ExistingRecord()
@@ -22,14 +22,13 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var insertGenres = new InsertGenres("History");
             var insert = await _dataAccess.ExecuteAsync(insertGenres);
 
-            var request = new Genre_DTO(1, "History");
+            var request = new GetGenreByName("History");
             var result = await _dataAccess.FetchAsync(request);
 
             Assert.NotNull(result);
-            Assert.Equal(1, result.GenreID);
             Assert.Equal("History", result.Name);
 
-            await _dataAccess.ExecuteAsync(new DeleteGenres(2));
+            await _dataAccess.ExecuteAsync(new DeleteGenres(result.GenreID));
 
         }
     }

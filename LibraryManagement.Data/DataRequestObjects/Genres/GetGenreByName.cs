@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Data.Abstraction;
+using LibraryManagement.Data.DataTransferObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +8,24 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Data.DataRequestObjects.Genres
 {
-    public class Genre_DTO : IDataFetch<Genre_DTO>
+    public class GetGenreByName : IDataFetch<Genre_DTO>
     {
-        public int GenreID { get; set; }
         public string Name { get; set; }
+        public int GenreID { get; set; }
 
-        public Genre_DTO(int genreId, string name)
+        public GetGenreByName(string name)
         {
-            GenreID = genreId;
             Name = name;
         }
 
         public object GetParameters()
         {
-            return new { GenreID };
+            return new { Name = Name };
         }
 
         public string GetSql()
         {
-            return "SELECT GenreID, Name FROM Genres WHERE GenreID = @GenreID";
+            return "SELECT GenreID, Name FROM Genres WHERE Name = @Name";
         }
 
     }

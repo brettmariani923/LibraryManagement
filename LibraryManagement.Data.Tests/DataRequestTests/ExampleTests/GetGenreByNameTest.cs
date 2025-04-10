@@ -17,27 +17,25 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
     public class GetGenreByNameTest : DataTest
     {
         [Fact]
-        public async Task GetGenreByName_Given_ValidGenreName_ShouldReturn_ExistingRecord()
+        public async Task GetGenreByName_Given_ValidName_ShouldReturn_ExistingRecord()
         {
-            var insertGenres = new InsertGenres("History");
-            var insert = await _dataAccess.ExecuteAsync(insertGenres);
+            var genreName = "History";
 
-            var request = new GetGenreByName("History");
-            var result = await _dataAccess.FetchAsync(request);
+            await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
+            var result = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
 
             Assert.NotNull(result);
-            Assert.Equal("History", result.Name);
+            Assert.Equal(genreName, result.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteGenres(result.GenreID));
-
         }
 
         [Fact]
         public async Task GetGenreByName_Given_InvalidName_ShouldReturn_Null()
         {
-            var request = new GetGenreByName("NonExistentGenre");
-            var result = await _dataAccess.FetchAsync(request);
+            var result = await _dataAccess.FetchAsync(new GetGenreByName("NonExistentGenre"));
             Assert.Null(result);
         }
+
     }
 }

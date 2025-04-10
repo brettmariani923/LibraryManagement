@@ -25,6 +25,6 @@ namespace LibraryManagement.Data.DataRequestObjects.Genres
         {
             return "DELETE FROM Genres WHERE GenreID = @GenreID;";
         }
-   
+
     }
 }

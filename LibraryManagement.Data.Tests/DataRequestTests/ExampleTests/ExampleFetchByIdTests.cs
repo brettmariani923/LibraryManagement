@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Data.DataRequestObjects.Examples;
+using LibraryManagement.Data.DataRequestObjects.Genres;
 using LibraryManagement.Data.Tests.Helpers;
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
@@ -22,10 +23,9 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             // Here we are just asserting that the result is not null. Typically you would have more assertions, such as making sure your object has the expected values.
             Assert.NotNull(result);
         }
-
-        // This class is just for an example, but ideally you would have multiple tests.
-        // You want to always consider the different possibilities/outcomes for the method/class you're testing, and then
-        // ensure that you have tests to cover for all scenarios. For example you might have one test to
-        // assert you get the record when it exists, but you might have another test that you get null when no record exists.
-    }
+            // This class is just for an example, but ideally you would have multiple tests.
+            // You want to always consider the different possibilities/outcomes for the method/class you're testing, and then
+            // ensure that you have tests to cover for all scenarios. For example you might have one test to
+            // assert you get the record when it exists, but you might have another test that you get null when no record exists.
+        }
 }

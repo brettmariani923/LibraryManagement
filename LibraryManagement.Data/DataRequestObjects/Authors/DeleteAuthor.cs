@@ -1,26 +1,25 @@
 ﻿using LibraryManagement.Data.Abstraction;
 
-
-namespace LibraryManagement.Data.DataRequestObjects.Genres
+namespace LibraryManagement.Data.DataRequestObjects.Authors
 {
-    public class DeleteGenres : IDataExecute
+    public class DeleteAuthor : IDataExecute
     {
         public int DeleteID { get; set; }
 
-        public DeleteGenres(int id)
+        public DeleteAuthor(int id)
         {
             DeleteID = id;
         }
 
         public object? GetParameters()
         {
-            return new { GenreID = DeleteID };
+            return new { AuthorID = DeleteID };
         }
 
         public string GetSql()
         {
-            return "DELETE FROM Genres WHERE GenreID = @GenreID;";
+            return "DELETE FROM Authors WHERE AuthorID = @AuthorID;";
         }
-
+    
     }
 }

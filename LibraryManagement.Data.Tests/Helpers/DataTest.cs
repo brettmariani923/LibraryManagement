@@ -7,6 +7,12 @@ namespace LibraryManagement.Data.Tests.Helpers
     {
         protected readonly IDataAccess _dataAccess;
 
+        //Adding this because for now because hidden isn't showing up in my newest branch, we probably just need to update git ignore on the main branch.
+        internal static class Hidden
+        {
+            public const string ConnectionString = "Server=Brett;Database=LibraryManagement;Trusted_Connection=True;Trust Server Certificate=True;";
+        }
+
         public DataTest()
         {
             /* 
@@ -14,13 +20,9 @@ namespace LibraryManagement.Data.Tests.Helpers
                 Ensure that your class has a constant named 'ConnectionString' which will be used to connect to the Database you use for running unit tests.
 
                 Example:
+                        */
 
-                    internal static class Hidden
-                    {
-                        public const string ConnectionString = "Server=myServerAddress;Database=myDataBaseForUnitTests;Trusted_Connection=True;Trust Server Certificate=True;";
-                    }
-            */
-
+                    
             var connectionFactory = new SqlConnectionFactory(Hidden.ConnectionString);
 
             _dataAccess = new DataAccess(connectionFactory);

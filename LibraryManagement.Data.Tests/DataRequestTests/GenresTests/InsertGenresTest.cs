@@ -1,18 +1,8 @@
 ﻿using LibraryManagement.Data.DataRequestObjects.Genres;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LibraryManagement.Data.DataRequestObjects.Examples;
 using LibraryManagement.Data.Tests.Helpers;
-using LibraryManagement.Data.Abstraction;
 using Microsoft.Data.SqlClient;
-using System.ComponentModel.DataAnnotations;
 using LibraryManagement.Domain.Constants;
-using Azure.Core;
-using System.Runtime.InteropServices;
-using LibraryManagement.Data.DataTransferObjects;
+
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Books]
+(
+	BookID INT CONSTRAINT PK_Books PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50) NOT NULL,
+    CONSTRAINT CHK_Book_Name CHECK (LEN(Name) > 0), 
+    CONSTRAINT UQ_Book_Name UNIQUE(Name)
+);

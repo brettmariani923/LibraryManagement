@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Authors]
+(
+    AuthorID INT CONSTRAINT PK_Authors PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50) NOT NULL,
+    CONSTRAINT CHK_Author_Name CHECK (LEN(Name) > 0), 
+    CONSTRAINT UQ_Author_Name UNIQUE(Name)
+);

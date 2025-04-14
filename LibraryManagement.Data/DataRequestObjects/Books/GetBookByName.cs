@@ -3,7 +3,7 @@ using LibraryManagement.Data.DataTransferObjects;
 
 namespace LibraryManagement.Data.DataRequestObjects.Books
 { 
-    public class GetBookByName : IDataFetch<Book_DTO>
+    public class GetBookByName : IDataFetch<Library_DTO>
     {
         public string Name { get; set; }
         public int BookID { get; set; }

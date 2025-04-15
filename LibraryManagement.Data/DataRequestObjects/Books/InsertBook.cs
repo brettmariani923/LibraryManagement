@@ -5,20 +5,29 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
     internal class InsertBook : IDataExecute
     {
         public string Title { get; set; }
+        public string PublishedYear { get; set; }
+        public string Summary { get; set; }
 
-        public InsertBook(string title)
+        public InsertBook(string title, string publishedYear, string summary)
         {
             Title = title;
+            PublishedYear = publishedYear;
+            Summary = summary;
         }
 
         public object? GetParameters()
         {
-            return new { Title = Title };
+            return new
+            {
+                Title = Title,
+                PublishedYear = PublishedYear,
+                Summary = Summary
+            };
         }
 
         public string GetSql()
         {
-            return "INSERT INTO Books (Title) VALUES (@Title);";
+            return "INSERT INTO Books (Title, PublishedYear, Summary) VALUES (@Title, @PublishedYear, @Summary);";
         }
     }
 }

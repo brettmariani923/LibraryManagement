@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Domain.Constants
 {
-    public static class MaxLength
+    public class TestVariables
     {
-        public const int GenreName = 50;
-        public const int AuthorName = 50;
-        public const int BookName = 50;
-
+        public const string Title = "The Republic";
         public const string Summary = "A timeless classic and a total heart puncher sure to make you weep tears of joy";
         public const string PublishedYear = "1000 AD";
     }

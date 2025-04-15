@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Data.DataRequestObjects.Books;
 using LibraryManagement.Data.Tests.Helpers;
+using LibraryManagement.Domain.Constants;
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {
@@ -10,7 +11,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         {
             var BookName = "Aion";
 
-            var result = await _dataAccess.ExecuteAsync(new InsertBook(BookName));
+            var result = await _dataAccess.ExecuteAsync(new InsertBook(BookName, TestVariables.PublishedYear, TestVariables.Summary));
             Assert.Equal(1, result);
 
             var Book = await _dataAccess.FetchAsync(new GetBookByName(BookName));

@@ -20,7 +20,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
 
         public string GetSql()
         {
-            return "SELECT BookID, Title FROM Books WHERE Title = @Title";
+            return "SELECT BookID, Title, PublishedYear, Summary FROM Books WHERE Title = @Title";
         }
 
     }

@@ -19,7 +19,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
 
             var Book = await _dataAccess.FetchAsync(new GetBookByName(BookName));
             Assert.NotNull(Book);
-            Assert.Equal(BookName, Book.Name);
+            Assert.Equal(BookName, Book.Title);
 
             await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
@@ -65,7 +65,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
 
             var Book = await _dataAccess.FetchAsync(new GetBookByName(specialChar));
             Assert.NotNull(Book);
-            Assert.Equal(specialChar, Book.Name);
+            Assert.Equal(specialChar, Book.Title);
 
             await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
@@ -80,7 +80,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
 
             var Book = await _dataAccess.FetchAsync(new GetBookByName(maxLength));
             Assert.NotNull(Book);
-            Assert.Equal(maxLength, Book.Name);
+            Assert.Equal(maxLength, Book.Title);
 
             await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }

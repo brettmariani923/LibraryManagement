@@ -5,22 +5,22 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
 { 
     public class GetBookByName : IDataFetch<Library_DTO>
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
         public int BookID { get; set; }
 
-        public GetBookByName(string name)
+        public GetBookByName(string title)
         {
-            Name = name;
+            Title = title;
         }
 
         public object GetParameters()
         {
-            return new { Name = Name };
+            return new { Title = Title };
         }
 
         public string GetSql()
         {
-            return "SELECT BookID, Name FROM Books WHERE Name = @Name";
+            return "SELECT BookID, Title FROM Books WHERE Title = @Title";
         }
 
     }

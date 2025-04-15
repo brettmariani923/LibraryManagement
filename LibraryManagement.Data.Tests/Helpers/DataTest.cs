@@ -7,9 +7,6 @@ namespace LibraryManagement.Data.Tests.Helpers
     {
         protected readonly IDataAccess _dataAccess;
 
-        //Adding this because for now because hidden isn't showing up in my newest branch, we probably just need to update git ignore on the main branch.
-       
-
         public DataTest()
         {
             /* 

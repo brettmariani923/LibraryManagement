@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Domain.Constants
 {
-    public class TestVariables
+    public class Variables
     {
         public const string Title = "The Republic";
         public const string Summary = "A timeless classic and a total heart puncher sure to make you weep tears of joy";

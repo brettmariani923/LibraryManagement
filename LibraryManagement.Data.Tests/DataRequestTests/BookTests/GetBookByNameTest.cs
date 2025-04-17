@@ -10,13 +10,13 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task GetBookByName_Given_ValidName_ShouldReturn_ExistingRecord()
         {
-            var BookName = "Beyond Good and Evil";
+            var bookTitle = "Beyond Good and Evil";
 
-            await _dataAccess.ExecuteAsync(new InsertBook(BookName, TestVariables.PublishedYear, TestVariables.Summary));
-            var result = await _dataAccess.FetchAsync(new GetBookByName(BookName));
+            await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
+            var result = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
 
             Assert.NotNull(result);
-            Assert.Equal(BookName, result.Title);
+            Assert.Equal(bookTitle, result.Title);
 
             await _dataAccess.ExecuteAsync(new DeleteBook(result.BookID));
         }

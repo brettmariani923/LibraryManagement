@@ -9,19 +9,19 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task DeleteBook_GivenCorrectID_ShouldDelete_Successfully()
         {
-            var BookName = "Aion";
+            var bookTitle = "Aion";
 
-            var result = await _dataAccess.ExecuteAsync(new InsertBook(BookName, TestVariables.PublishedYear, TestVariables.Summary));
+            var result = await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
             Assert.Equal(1, result);
 
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(BookName));
+            var Book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
             Assert.NotNull(Book);
-            Assert.Equal(BookName, Book.Title);
+            Assert.Equal(bookTitle, Book.Title);
 
             var deleteResult = await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
             Assert.Equal(1, deleteResult);
 
-            var checkDeleted = await _dataAccess.FetchAsync(new GetBookByName(BookName));
+            var checkDeleted = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
             Assert.Null(checkDeleted);
         }
 

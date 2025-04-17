@@ -3,7 +3,7 @@ using LibraryManagement.Data.DataTransferObjects;
 
 namespace LibraryManagement.Data.DataRequestObjects.Authors
 {
-    public class GetAuthorByName : IDataFetch<Library_DTO>
+    public class GetAuthorByName : IDataFetch<Author_DTO>
     {
         public string Name { get; set; }
         public int AuthorID { get; set; }

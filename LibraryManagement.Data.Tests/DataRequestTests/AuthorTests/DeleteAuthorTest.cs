@@ -9,19 +9,19 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task DeleteAuthor_GivenCorrectID_ShouldDelete_Successfully()
         {
-            var AuthorName = "Carl Jung";
+            var authorName = "Carl Jung";
 
-            var result = await _dataAccess.ExecuteAsync(new InsertAuthor(AuthorName));
+            var result = await _dataAccess.ExecuteAsync(new InsertAuthor(authorName));
             Assert.Equal(1, result);
 
-            var Author = await _dataAccess.FetchAsync(new GetAuthorByName(AuthorName));
-            Assert.NotNull(Author);
-            Assert.Equal(AuthorName, Author.Name);
+            var author = await _dataAccess.FetchAsync(new GetAuthorByName(authorName));
+            Assert.NotNull(author);
+            Assert.Equal(authorName, author.Name);
 
-            var deleteResult = await _dataAccess.ExecuteAsync(new DeleteAuthor(Author.AuthorID));
+            var deleteResult = await _dataAccess.ExecuteAsync(new DeleteAuthor(author.AuthorID));
             Assert.Equal(1, deleteResult);
 
-            var checkDeleted = await _dataAccess.FetchAsync(new GetAuthorByName(AuthorName));
+            var checkDeleted = await _dataAccess.FetchAsync(new GetAuthorByName(authorName));
             Assert.Null(checkDeleted);
         }
 

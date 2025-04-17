@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Data.DataRequestObjects.Genres
 {
-    public class GetGenreByName : IDataFetch<Library_DTO>
+    public class GetGenreByName : IDataFetch<Genre_DTO>
     {
         public string Name { get; set; }
         public int GenreID { get; set; }

@@ -12,30 +12,30 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
         [Fact]
         public async Task InsertBook_GivenValidName_ShouldInsertSuccessfully()
         {
-            var BookName = "The Republic";
+            var bookTitle = "The Republic";
 
-            var insertResult = await _dataAccess.ExecuteAsync(new InsertBook(BookName, TestVariables.PublishedYear, TestVariables.Summary));
+            var insertResult = await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
             Assert.Equal(1, insertResult);
 
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(BookName));
+            var Book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
             Assert.NotNull(Book);
-            Assert.Equal(BookName, Book.Title);
+            Assert.Equal(bookTitle, Book.Title);
 
             await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
 
         [Fact]
-        public async Task InsertBook_Given_BookName_AlreadyExists_ShouldThrow_SqlException()
+        public async Task InsertBook_Given_bookTitle_AlreadyExists_ShouldThrow_SqlException()
         {
-            var BookName = "Divine Love and Wisdom";
+            var bookTitle = "Divine Love and Wisdom";
 
-            var result = await _dataAccess.ExecuteAsync(new InsertBook(BookName, TestVariables.PublishedYear, TestVariables.Summary));
+            var result = await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
             Assert.Equal(1, result);
 
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(BookName));
+            var Book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
             Assert.NotNull(Book);
 
-            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertBook(BookName, TestVariables.PublishedYear, TestVariables.Summary)));
+            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary)));
 
             await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
@@ -46,13 +46,13 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
         [InlineData("  ")]
         public async Task InsertBook_Given_NameIsInvalid_ShouldThrow_SqlException(string invalidName)
         {
-            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertBook(invalidName, TestVariables.PublishedYear, TestVariables.Summary)));
+            await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertBook(invalidName, Variables.PublishedYear, Variables.Summary)));
         }
 
         [Fact]
         public async Task InsertBook_WithTooLongName_ShouldThrowSqlException()
         {
-            await Assert.ThrowsAsync<SqlException>(() => _dataAccess.ExecuteAsync(new InsertBook(new string('A', MaxLength.BookName + 1), TestVariables.PublishedYear, TestVariables.Summary)));
+            await Assert.ThrowsAsync<SqlException>(() => _dataAccess.ExecuteAsync(new InsertBook(new string('A', MaxLength.BookTitle + 1), Variables.PublishedYear, Variables.Summary)));
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
         [Fact]
         public async Task InsertBook_Given_MaxLengthName_ShouldInsert_Successfully()
         {
-            var maxLength = new string('A', MaxLength.BookName);
+            var maxLength = new string('A', MaxLength.BookTitle);
             var publishedYear = "2023";
             var summary = "A book with a title that is exactly at the maximum length limit.";
 

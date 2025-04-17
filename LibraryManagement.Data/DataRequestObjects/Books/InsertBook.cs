@@ -17,12 +17,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
 
         public object? GetParameters()
         {
-            return new
-            {
-                Title = Title,
-                PublishedYear = PublishedYear,
-                Summary = Summary
-            };
+            return this;
         }
 
         public string GetSql()

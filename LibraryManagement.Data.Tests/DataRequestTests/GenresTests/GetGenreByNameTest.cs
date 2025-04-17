@@ -1,7 +1,6 @@
 ﻿using LibraryManagement.Data.DataRequestObjects.Genres;
 using LibraryManagement.Data.Tests.Helpers;
 
-
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {
     public class GetGenreByNameTest : DataTest

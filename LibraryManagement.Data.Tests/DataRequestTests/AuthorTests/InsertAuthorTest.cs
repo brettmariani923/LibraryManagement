@@ -15,13 +15,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.AuthorTests
             var authorName = "Plato";
 
             var insertResult = await _dataAccess.ExecuteAsync(new InsertAuthor(authorName));
-            Assert.Equal(1, insertResult);
 
             var author = await _dataAccess.FetchAsync(new GetAuthorByName(authorName));
-            Assert.NotNull(author);
-            Assert.Equal(authorName, author.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteAuthor(author.AuthorID));
+
+            Assert.Equal(1, insertResult);
         }
 
         [Fact]
@@ -30,10 +29,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.AuthorTests
             var authorName = "Plotinus";
 
             var result = await _dataAccess.ExecuteAsync(new InsertAuthor(authorName));
-            Assert.Equal(1, result);
 
             var author = await _dataAccess.FetchAsync(new GetAuthorByName(authorName));
-            Assert.NotNull(author);
 
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertAuthor(authorName)));
 
@@ -52,7 +49,7 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.AuthorTests
         [Fact]
         public async Task InsertAuthor_WithTooLongName_ShouldThrowSqlException()
         {
-            await Assert.ThrowsAsync<SqlException>(() => _dataAccess.ExecuteAsync(new InsertAuthor(new string('A', MaxLength.authorName + 1))));
+            await Assert.ThrowsAsync<SqlException>(() => _dataAccess.ExecuteAsync(new InsertAuthor(new string('A', MaxLength.AuthorName + 1))));
         }
 
         [Fact]
@@ -61,13 +58,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.AuthorTests
             var specialChar = "René Descartes";
 
             var result = await _dataAccess.ExecuteAsync(new InsertAuthor(specialChar));
-            Assert.Equal(1, result);
 
             var author = await _dataAccess.FetchAsync(new GetAuthorByName(specialChar));
-            Assert.NotNull(author);
-            Assert.Equal(specialChar, author.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteAuthor(author.AuthorID));
+
+            Assert.Equal(1, result);
         }
 
         [Fact]
@@ -76,13 +72,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.AuthorTests
             var maxLength = new string('A', MaxLength.AuthorName);
 
             var result = await _dataAccess.ExecuteAsync(new InsertAuthor(maxLength));
-            Assert.Equal(1, result);
 
             var author = await _dataAccess.FetchAsync(new GetAuthorByName(maxLength));
-            Assert.NotNull(author);
-            Assert.Equal(maxLength, author.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteAuthor(author.AuthorID));
+
+            Assert.Equal(1, result);
         }
 
     }

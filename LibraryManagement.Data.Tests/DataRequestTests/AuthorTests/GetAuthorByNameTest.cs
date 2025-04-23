@@ -9,15 +9,15 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
         [Fact]
         public async Task GetAuthorByName_Given_ValidName_ShouldReturn_ExistingRecord()
         {
-            var AuthorName = "Emannuel Swedenborg";
+            var authorName = "Emannuel Swedenborg";
 
-            await _dataAccess.ExecuteAsync(new InsertAuthor(AuthorName));
-            var result = await _dataAccess.FetchAsync(new GetAuthorByName(AuthorName));
-
-            Assert.NotNull(result);
-            Assert.Equal(AuthorName, result.Name);
+            await _dataAccess.ExecuteAsync(new InsertAuthor(authorName));
+            var result = await _dataAccess.FetchAsync(new GetAuthorByName(authorName));
 
             await _dataAccess.ExecuteAsync(new DeleteAuthor(result.AuthorID));
+
+            Assert.Equal(authorName, result.Name);
+
         }
 
         [Fact]

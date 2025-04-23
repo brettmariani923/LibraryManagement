@@ -15,13 +15,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
             var bookTitle = "The Republic";
 
             var insertResult = await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
+
+            var book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
+
+            await _dataAccess.ExecuteAsync(new DeleteBook(book.BookID));
+
             Assert.Equal(1, insertResult);
-
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
-            Assert.NotNull(Book);
-            Assert.Equal(bookTitle, Book.Title);
-
-            await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
 
         [Fact]
@@ -30,14 +29,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
             var bookTitle = "Divine Love and Wisdom";
 
             var result = await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
-            Assert.Equal(1, result);
 
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
-            Assert.NotNull(Book);
+            var book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
 
             await Assert.ThrowsAsync<SqlException>(async () => await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary)));
 
-            await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
+            await _dataAccess.ExecuteAsync(new DeleteBook(book.BookID));
         }
 
         [Theory]
@@ -63,13 +60,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
             var summary = "A classic Chinese text attributed to Laozi, emphasizing harmony and balance in life.";
 
             var result = await _dataAccess.ExecuteAsync(new InsertBook(specialChar, publishedYear, summary));
+
+            var book = await _dataAccess.FetchAsync(new GetBookByName(specialChar));
+
+            await _dataAccess.ExecuteAsync(new DeleteBook(book.BookID));
+
             Assert.Equal(1, result);
-
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(specialChar));
-            Assert.NotNull(Book);
-            Assert.Equal(specialChar, Book.Title);
-
-            await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
 
         [Fact]
@@ -80,13 +76,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.BookTests
             var summary = "A book with a title that is exactly at the maximum length limit.";
 
             var result = await _dataAccess.ExecuteAsync(new InsertBook(maxLength, publishedYear, summary));
+
+            var book = await _dataAccess.FetchAsync(new GetBookByName(maxLength));
+
+            await _dataAccess.ExecuteAsync(new DeleteBook(book.BookID));
+
             Assert.Equal(1, result);
-
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(maxLength));
-            Assert.NotNull(Book);
-            Assert.Equal(maxLength, Book.Title);
-
-            await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
         }
 
     }

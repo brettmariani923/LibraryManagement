@@ -13,12 +13,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var bookTitle = "Beyond Good and Evil";
 
             await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
+            
             var result = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
 
-            Assert.NotNull(result);
-            Assert.Equal(bookTitle, result.Title);
-
             await _dataAccess.ExecuteAsync(new DeleteBook(result.BookID));
+
+            Assert.Equal(bookTitle, result.Title);
         }
 
         [Fact]

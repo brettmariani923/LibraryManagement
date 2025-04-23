@@ -11,12 +11,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var genreName = "History";
 
             await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
+
             var result = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
 
-            Assert.NotNull(result);
-            Assert.Equal(genreName, result.Name);
-
             await _dataAccess.ExecuteAsync(new DeleteGenres(result.GenreID));
+
+            Assert.Equal(genreName, result.Name);
         }
 
         [Fact]

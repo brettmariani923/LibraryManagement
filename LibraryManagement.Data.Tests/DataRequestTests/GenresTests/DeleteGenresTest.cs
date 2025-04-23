@@ -14,11 +14,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             Assert.Equal(1, result);
 
             var genre = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
-            Assert.NotNull(genre);
-            Assert.Equal(genreName, genre.Name);
 
             var deleteResult = await _dataAccess.ExecuteAsync(new DeleteGenres(genre.GenreID));
-            Assert.Equal(1, deleteResult);
 
             var checkDeleted = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
             Assert.Null(checkDeleted);

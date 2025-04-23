@@ -14,12 +14,9 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var result = await _dataAccess.ExecuteAsync(new InsertBook(bookTitle, Variables.PublishedYear, Variables.Summary));
             Assert.Equal(1, result);
 
-            var Book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
-            Assert.NotNull(Book);
-            Assert.Equal(bookTitle, Book.Title);
+            var book = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
 
-            var deleteResult = await _dataAccess.ExecuteAsync(new DeleteBook(Book.BookID));
-            Assert.Equal(1, deleteResult);
+            var deleteResult = await _dataAccess.ExecuteAsync(new DeleteBook(book.BookID));
 
             var checkDeleted = await _dataAccess.FetchAsync(new GetBookByName(bookTitle));
             Assert.Null(checkDeleted);

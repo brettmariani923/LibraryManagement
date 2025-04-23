@@ -13,7 +13,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Authors
 
         public object? GetParameters()
         {
-            return new { Name = Name };
+            return this;
         }
 
         public string GetSql()

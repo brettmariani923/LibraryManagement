@@ -14,7 +14,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Genres
 
         public object? GetParameters()
         {
-            return new { GenreID = DeleteID };
+            return this;
         }
 
         public string GetSql()

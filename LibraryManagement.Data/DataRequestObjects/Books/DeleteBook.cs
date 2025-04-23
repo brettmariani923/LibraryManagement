@@ -14,7 +14,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
 
         public object? GetParameters()
         {
-            return new { BookID = BookID };
+            return this;
         }
 
         public string GetSql()

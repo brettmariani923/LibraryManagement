@@ -15,7 +15,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
 
         public object GetParameters()
         {
-            return new { Title = Title };
+            return this;
         }
 
         public string GetSql()

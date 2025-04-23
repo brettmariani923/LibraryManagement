@@ -13,7 +13,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Authors
 
         public object? GetParameters()
         {
-            return new { AuthorID = DeleteID };
+            return this;
         }
 
         public string GetSql()

@@ -6,7 +6,6 @@ namespace LibraryManagement.Data.DataRequestObjects.Authors
     public class GetAuthorByName : IDataFetch<Author_DTO>
     {
         public string Name { get; set; }
-        public int AuthorID { get; set; }
 
         public GetAuthorByName(string name)
         {

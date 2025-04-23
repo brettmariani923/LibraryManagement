@@ -2,7 +2,7 @@
 
 namespace LibraryManagement.Data.DataRequestObjects.Books
 {
-    internal class InsertBook : IDataExecute
+    public class InsertBook : IDataExecute
     {
         public string Title { get; set; }
         public string PublishedYear { get; set; }

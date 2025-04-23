@@ -6,7 +6,6 @@ namespace LibraryManagement.Data.DataRequestObjects.Books
     public class GetBookByName : IDataFetch<Book_DTO>
     {
         public string Title { get; set; }
-        public int BookID { get; set; }
 
         public GetBookByName(string title)
         {

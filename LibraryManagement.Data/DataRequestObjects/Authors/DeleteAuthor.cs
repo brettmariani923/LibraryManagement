@@ -4,11 +4,11 @@ namespace LibraryManagement.Data.DataRequestObjects.Authors
 {
     public class DeleteAuthor : IDataExecute
     {
-        public int DeleteID { get; set; }
+        public int AuthorID { get; set; }
 
         public DeleteAuthor(int id)
         {
-            DeleteID = id;
+            AuthorID = id;
         }
 
         public object? GetParameters()

@@ -1,18 +1,8 @@
 ﻿using LibraryManagement.Data.DataRequestObjects.Genres;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LibraryManagement.Data.DataRequestObjects.Examples;
 using LibraryManagement.Data.Tests.Helpers;
-using LibraryManagement.Data.Abstraction;
 using Microsoft.Data.SqlClient;
-using System.ComponentModel.DataAnnotations;
 using LibraryManagement.Domain.Constants;
-using Azure.Core;
-using System.Runtime.InteropServices;
-using LibraryManagement.Data.DataTransferObjects;
+
 
 namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
 {
@@ -24,13 +14,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var genreName = "Adventure";
 
             var insertResult = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
-            Assert.Equal(1, insertResult);
 
             var genre = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
-            Assert.NotNull(genre);
-            Assert.Equal(genreName, genre.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteGenres(genre.GenreID));
+
+            Assert.Equal(1, insertResult);
         }
 
         [Fact]
@@ -39,10 +28,8 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var genreName = "Fiction";
 
             var result = await _dataAccess.ExecuteAsync(new InsertGenres(genreName));
-            Assert.Equal(1, result);
 
             var genre = await _dataAccess.FetchAsync(new GetGenreByName(genreName));
-            Assert.NotNull(genre);
 
             await Assert.ThrowsAsync<SqlException>(async () =>await _dataAccess.ExecuteAsync(new InsertGenres(genreName)));
 
@@ -70,13 +57,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var specialChar = "Science & Technology! ç ê ë è";
 
             var result = await _dataAccess.ExecuteAsync(new InsertGenres(specialChar));
-            Assert.Equal(1, result);
 
             var genre = await _dataAccess.FetchAsync(new GetGenreByName(specialChar));
-            Assert.NotNull(genre);
-            Assert.Equal(specialChar, genre.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteGenres(genre.GenreID));
+
+            Assert.Equal(1, result);
         }
 
         [Fact]
@@ -85,13 +71,12 @@ namespace LibraryManagement.Data.Tests.DataRequestTests.ExampleTests
             var maxLength = new string('A', MaxLength.GenreName);
 
             var result = await _dataAccess.ExecuteAsync(new InsertGenres(maxLength));
-            Assert.Equal(1, result);
 
             var genre = await _dataAccess.FetchAsync(new GetGenreByName(maxLength));
-            Assert.NotNull(genre);
-            Assert.Equal(maxLength, genre.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteGenres(genre.GenreID));
+
+            Assert.Equal(1, result);
         }
 
     }

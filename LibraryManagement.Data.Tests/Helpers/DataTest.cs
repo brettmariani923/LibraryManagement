@@ -14,12 +14,13 @@ namespace LibraryManagement.Data.Tests.Helpers
                 Ensure that your class has a constant named 'ConnectionString' which will be used to connect to the Database you use for running unit tests.
 
                 Example:
-
-                    internal static class Hidden
+                
+                internal static class Hidden
                     {
                         public const string ConnectionString = "Server=myServerAddress;Database=myDataBaseForUnitTests;Trusted_Connection=True;Trust Server Certificate=True;";
                     }
-            */
+                        */
+
 
             var connectionFactory = new SqlConnectionFactory(Hidden.ConnectionString);
 

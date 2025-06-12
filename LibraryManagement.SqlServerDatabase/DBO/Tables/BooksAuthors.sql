@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[BooksAuthors]
+(
+	BoosAuthorsID INT CONSTRAINT PK_BooksAuthors PRIMARY KEY IDENTITY(1,1),
+	BookID INT NOT NULL,
+	AuthorID INT NOT NULL,
+	CONSTRAINT FK_BooksAuthors_Books FOREIGN KEY (BookID) REFERENCES Books(BookID),
+	CONSTRAINT FK_BooksAuthors_Authors FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID),
+)

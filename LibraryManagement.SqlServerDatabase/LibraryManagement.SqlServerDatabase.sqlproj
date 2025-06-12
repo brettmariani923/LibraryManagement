@@ -61,5 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="DBO\Tables\Genres.sql" />
+    <Build Include="DBO\Tables\Authors.sql" />
+    <Build Include="DBO\Tables\Books.sql" />
+    <Build Include="DBO\Tables\BooksAuthors.sql" />
   </ItemGroup>
 </Project>

@@ -1,24 +1,20 @@
 ﻿using LibraryManagement.Data.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LibraryManagement.Data.DataRequestObjects.Genres
 {
     public class DeleteGenres : IDataExecute
     {
-        public int DeleteID { get; set; }
+        public int GenreID { get; set; }
 
         public DeleteGenres(int id)
         {
-            DeleteID = id;
+            GenreID = id;
         }
 
         public object? GetParameters()
         {
-            return new { GenreID = DeleteID };
+            return this;
         }
 
         public string GetSql()

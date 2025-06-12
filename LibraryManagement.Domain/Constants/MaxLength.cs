@@ -8,6 +8,11 @@ namespace LibraryManagement.Domain.Constants
 {
     public static class MaxLength
     {
-        public const int GenreName = 50;
+        public const int GenreName = 125;
+
+        public const int AuthorName = 125;
+
+        public const int BookTitle = 150;
+
     }
 }

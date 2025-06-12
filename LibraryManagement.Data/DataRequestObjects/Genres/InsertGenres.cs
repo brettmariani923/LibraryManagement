@@ -18,7 +18,7 @@ namespace LibraryManagement.Data.DataRequestObjects.Genres
 
         public object? GetParameters()
         {
-            return new { Name = Name };
+            return this;
         }
 
         public string GetSql()

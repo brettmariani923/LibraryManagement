@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Genres]
 (
     GenreID INT CONSTRAINT PK_Genres PRIMARY KEY IDENTITY(1,1),
-    Name NVARCHAR(50) NOT NULL,
+    Name NVARCHAR(125) NOT NULL,
     CONSTRAINT CHK_Genres_Name CHECK (LEN(Name) > 0), 
     CONSTRAINT UQ_Genres_Name UNIQUE(Name)
 );
